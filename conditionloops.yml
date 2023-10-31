@@ -1,0 +1,20 @@
+- hosts: web
+  become: true
+  tasks:
+    - name: Install list of packages
+      apt:
+        name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+=============================
+
+- hosts: db
+  become: true
+  tasks:
+    - name: Install list of packages
+      package:
+        name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+        state: present
+      when: ansible_distribution == "RedHat"
+
